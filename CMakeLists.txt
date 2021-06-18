@@ -34,6 +34,7 @@ if( FFMPEG_FOUND )
 endif()
 
 add_executable(VideoProcessingService
+    src/Demuxer/ffmpegdemuxer.cpp
     main.cpp
     )
 target_link_libraries(VideoProcessingService
