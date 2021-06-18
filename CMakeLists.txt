@@ -15,7 +15,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
@@ -35,6 +35,7 @@ endif()
 
 add_executable(VideoProcessingService
     src/Demuxer/ffmpegdemuxer.cpp
+    src/Decoder/ffmpegdecoder.cpp
     main.cpp
     )
 target_link_libraries(VideoProcessingService
