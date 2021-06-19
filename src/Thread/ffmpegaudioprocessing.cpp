@@ -83,6 +83,7 @@ void FFMPEGAudioProcessing::stop()
     }
     audioThread.clear();
     pimpl->decoder->close();
+    clearQueue();
 }
 
 void FFMPEGAudioProcessing::clearQueue()

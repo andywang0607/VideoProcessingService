@@ -33,9 +33,9 @@ bool FFMPEGVideoProcessing::open(AVCodecParameters *para)
     if(!para)
         return false;
     bool res = pimpl->decoder->open(para, 2);
-    pimpl->colorSpaceConverter->initParam(para->width, para->height, para->format);
     if(!res)
         return false;
+    pimpl->colorSpaceConverter->initParam(para->width, para->height, para->format);
     synpts = 0;
     return true;
 }
@@ -69,6 +69,8 @@ void FFMPEGVideoProcessing::stop()
     }
     videoThread.clear();
     pimpl->decoder->close();
+    pimpl->colorSpaceConverter->close();
+    clearQueue();
 }
 
 void FFMPEGVideoProcessing::clearQueue()
