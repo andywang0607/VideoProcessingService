@@ -14,18 +14,18 @@
  */
 enum AudioSampleFormat
 {
-    AV_SAMPLE_FMT_NONE,
-    AV_SAMPLE_FMT_U8,
-    AV_SAMPLE_FMT_S16,
-    AV_SAMPLE_FMT_S32,
-    AV_SAMPLE_FMT_FLT,
-    AV_SAMPLE_FMT_DBL,
-    AV_SAMPLE_FMT_U8P,
-    AV_SAMPLE_FMT_S16P,
-    AV_SAMPLE_FMT_S32P,
-    AV_SAMPLE_FMT_FLTP,
-    AV_SAMPLE_FMT_DBLP,
-    AV_SAMPLE_FMT_NB,
+    SAMPLE_FMT_NONE,
+    SAMPLE_FMT_U8,
+    SAMPLE_FMT_S16,
+    SAMPLE_FMT_S32,
+    SAMPLE_FMT_FLT,
+    SAMPLE_FMT_DBL,
+    SAMPLE_FMT_U8P,
+    SAMPLE_FMT_S16P,
+    SAMPLE_FMT_S32P,
+    SAMPLE_FMT_FLTP,
+    SAMPLE_FMT_DBLP,
+    SAMPLE_FMT_NB,
 };
 
 struct AVFrame;
@@ -43,7 +43,7 @@ public:
      * @param formatOut is output format
      * @return success of failed
      */
-    virtual bool open(int channelIn, int sampleRateIn, AudioSampleFormat formatIn,int channelOut=2, int sampleRateOut=44100, AudioSampleFormat formatOut=AudioSampleFormat::AV_SAMPLE_FMT_S32) = 0;
+    virtual bool open(int channelIn, int sampleRateIn, AudioSampleFormat formatIn,int channelOut=2, int sampleRateOut=44100, AudioSampleFormat formatOut=AudioSampleFormat::SAMPLE_FMT_S32) = 0;
 
     /**
      * Free memory and close resample module and
@@ -65,7 +65,7 @@ public:
     int sampleRateOut = 0;
 
     // Sample format of output data
-    int formatOut = AudioSampleFormat::AV_SAMPLE_FMT_S32;
+    int formatOut = AudioSampleFormat::SAMPLE_FMT_S32;
 };
 
 #endif // RESAMPLERABSTRACT_H
