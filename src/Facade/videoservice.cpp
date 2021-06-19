@@ -65,17 +65,20 @@ void VideoService::start()
 
 void VideoService::stop()
 {
+    cout << "VideoService stop start" << endl;
     if(vp) vp->stop();
+    cout << "VideoService vp stop finish" << endl;
     if(ap) ap->stop();
-    if(demuxer) {
-        demuxer->close();
-    }
+    cout << "VideoService ap stop finish" << endl;
+    if(demuxer) demuxer->close();
+    cout << "VideoService demuxer close finish" << endl;
     if(controlThread.empty()) return;
     isRunning.store(false);
     for(auto &thread:controlThread) {
         thread.join();
     }
     controlThread.clear();
+    cout << "VideoService stop finish" << endl;
 }
 
 void VideoService::seek(double pos)

@@ -108,14 +108,11 @@ AVCodecParameters *FFMPEGDemuxer::getVideoCodecParameter()
 {
     lock_guard<std::mutex> lck (mtx);
     if (!ioContext) {
-        cout << "copyVPara ic is null" << endl;
+        cout << "getVideoCodecParameter getVideoCodecParameter ic is null" << endl;
         return NULL;
     }
     AVCodecParameters *pa = avcodec_parameters_alloc();
     avcodec_parameters_copy(pa, ioContext->streams[videoStream]->codecpar);
-    cout << " pa->codec_id " << pa->codec_id << avcodec_get_name(pa->codec_id)<<  endl;
-    cout << " pa->codec_tag " << pa->codec_tag <<  endl;
-    cout << " pa->codec_type " << pa->codec_type << endl;
     return pa;
 }
 
@@ -123,8 +120,8 @@ AVCodecParameters *FFMPEGDemuxer::getAudioCodecParameter()
 {
     lock_guard<std::mutex> lck (mtx);
     if (!ioContext) {
-        cout << "copyAPara ioContext is null" << endl;
-        return nullptr;
+        cout << "getAudioCodecParameter getAudioCodecParameter ioContext is null" << endl;
+        return NULL;
     }
     AVCodecParameters *pa = avcodec_parameters_alloc();
     avcodec_parameters_copy(pa, ioContext->streams[audioStream]->codecpar);
@@ -154,7 +151,7 @@ void FFMPEGDemuxer::close()
 {
     lock_guard<std::mutex> lck (mtx);
     if (!ioContext) {
-        cout << "ioContext is nullptr" << endl;
+        cout << "close ioContext is nullptr" << endl;
         return;
     }
     avformat_flush(ioContext);

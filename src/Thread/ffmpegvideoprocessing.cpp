@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "ffmpegvideoprocessing.h"
 #include "src/Demuxer/ffmpegdemuxer.h"
 #include "src/Decoder/ffmpegdecoder.h"
@@ -6,6 +8,8 @@
 extern "C" {
 #include<libavcodec/avcodec.h>
 }
+
+using namespace std;
 
 struct FFMPEGVideoProcessing::impl
 {
@@ -30,12 +34,17 @@ FFMPEGVideoProcessing::FFMPEGVideoProcessing(): pimpl(std::make_shared<impl>())
 
 bool FFMPEGVideoProcessing::open(AVCodecParameters *para)
 {
-    if(!para)
+    if(!para){
+        cout << "FFMPEGVideoProcessing open failed" <<endl;
         return false;
-    bool res = pimpl->decoder->open(para, 2);
-    if(!res)
-        return false;
+    }
     pimpl->colorSpaceConverter->initParam(para->width, para->height, para->format);
+    bool res = pimpl->decoder->open(para, 2);
+    if(!res){
+        cout << "FFMPEGVideoProcessing open decoder failed" <<endl;
+        return false;
+    }
+
     synpts = 0;
     return true;
 }
