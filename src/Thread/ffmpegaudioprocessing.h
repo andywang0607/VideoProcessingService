@@ -22,7 +22,7 @@ public:
     threadsafe_queue<AVPacket*> ffmpegAudioPkt;
 
     /// queue for stroing resample data
-    threadsafe_queue<std::vector<char>> ffmpegPcmData;
+    threadsafe_queue<std::pair<std::vector<char>, int64_t>> ffmpegPcmData;
 
 private:
     struct impl;

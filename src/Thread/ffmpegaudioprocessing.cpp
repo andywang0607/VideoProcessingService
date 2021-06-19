@@ -64,7 +64,7 @@ void FFMPEGAudioProcessing::start()
                 int size = pimpl->resampler->resample(frame, pcm);
                 if (size <= 0) continue;
                 vector<char> pcmVec(pcm, pcm+size);
-                ffmpegPcmData.push(pcmVec);
+                ffmpegPcmData.push({pcmVec, pimpl->decoder->pts});
                 this_thread::sleep_for(chrono::milliseconds(10));
             }
             this_thread::sleep_for(chrono::milliseconds(10));
