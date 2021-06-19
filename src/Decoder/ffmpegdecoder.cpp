@@ -27,10 +27,10 @@ FFMPEGDecoder::~FFMPEGDecoder()
 
 bool FFMPEGDecoder::open(AVCodecParameters *para, int threadNum)
 {
+    close();
     lock_guard<std::mutex> lck (pimpl->mux);
     if (!para)
         return false;
-    close();
     AVCodec *vcodec = avcodec_find_decoder(para->codec_id);
     if (!vcodec) {
         avcodec_parameters_free(&para);
