@@ -20,7 +20,7 @@ public:
     /**
      * Open video processing module with codec parameter
      * @param para is video codec parameter can be obtained from demux module
-     * @return success of failed
+     * @return success or failed
      */
     virtual bool open(AVCodecParameters *para) = 0;
 
