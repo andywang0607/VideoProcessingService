@@ -36,6 +36,7 @@ endif()
 add_executable(VideoProcessingService
     src/Demuxer/ffmpegdemuxer.cpp
     src/Decoder/ffmpegdecoder.cpp
+    src/Resampler/ffmpegresampler.cpp
     main.cpp
     )
 target_link_libraries(VideoProcessingService
