@@ -38,6 +38,7 @@ add_executable(VideoProcessingService
     src/Decoder/ffmpegdecoder.cpp
     src/Resampler/ffmpegresampler.cpp
     src/YUV2RGB/ffmpegcolorspaceconverter.cpp
+    src/Thread/ffmpegvideoprocessing.cpp
     main.cpp
     )
 target_link_libraries(VideoProcessingService
