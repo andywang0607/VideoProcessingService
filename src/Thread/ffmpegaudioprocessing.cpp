@@ -95,6 +95,6 @@ void FFMPEGAudioProcessing::clearQueue()
         }
     }
     while(!ffmpegPcmData.empty()) {
-        ffmpegAudioPkt.try_pop();
+        ffmpegPcmData.try_pop();
     }
 }
