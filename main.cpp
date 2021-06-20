@@ -76,13 +76,11 @@ class MyHandler : public Http::Handler
             {
                 using namespace Http;
                 auto data = service.getVideoRGBFrame();
-                json res;
                 if(data){
-                     string rgb = string((*data).first.begin(), (*data).first.end());
-                     int64_t pts = (*data).second;
-                     res["rgb"] = rgb;
-                     res["pts"] = pts;
-                     response.send(Http::Code::Ok, res.dump());
+                     string rgb = string((*data).first.begin(), (*data).first.end()).append("pts:");
+                     int64_t pts = (*data).second;                   
+                     rgb.append(to_string(pts));
+                     response.send(Http::Code::Ok, rgb);
                 } else {
                     response.send(Http::Code::Ok, "null");
                 }
@@ -94,13 +92,11 @@ class MyHandler : public Http::Handler
             {
                 using namespace Http;
                 auto data = service.getPcmData();
-                json res;
                 if(data){
-                     string pcm = string((*data).first.begin(), (*data).first.end());
+                     string pcm = string((*data).first.begin(), (*data).first.end()).append("pts:");
                      int64_t pts = (*data).second;
-                     res["pcm"] = pcm;
-                     res["pts"] = pts;
-                     response.send(Http::Code::Ok, res.dump());
+                     pcm.append(to_string(pts));
+                     response.send(Http::Code::Ok, pcm);
                 } else {
                     response.send(Http::Code::Ok, "null");
                 }
