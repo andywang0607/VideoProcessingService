@@ -11,10 +11,6 @@ project(VideoProcessingService LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -33,6 +29,17 @@ if( FFMPEG_FOUND )
 
 endif()
 
+find_package(Pistache CONFIG REQUIRED)
+if( Pistache_FOUND )
+    # Additional Include Directories
+    include_directories( ${Pistache_INCLUDE_DIRS} )
+
+    # Additional Library Directories
+    link_directories( ${Pistache_LIBRARY_DIRS} )
+
+endif()
+find_package(nlohmann_json CONFIG REQUIRED)
+
 add_executable(VideoProcessingService
     src/Demuxer/ffmpegdemuxer.cpp
     src/Decoder/ffmpegdecoder.cpp
@@ -43,5 +50,7 @@ add_executable(VideoProcessingService
     src/Facade/videoservice.cpp
     main.cpp
     )
-target_link_libraries(VideoProcessingService
-    ${FFMPEG_LIBRARIES})
+target_link_libraries(VideoProcessingService PRIVATE
+    ${FFMPEG_LIBRARIES}
+    pistache
+    nlohmann_json)
