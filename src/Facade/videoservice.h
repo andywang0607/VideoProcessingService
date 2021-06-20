@@ -87,7 +87,7 @@ private:
     int height = 0;
 
     /// sample rate and channel num of audio player
-    int sampleRate = 44100;
+    int sampleRate = 48000;
     int channelNum = 2;
 };
 

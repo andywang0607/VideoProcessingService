@@ -90,7 +90,6 @@ AVFrame *FFMPEGDecoder::getDecodeData()
         return nullptr;
     }
     this->pts = frame->pts;
-    cout << "["<<frame->linesize[0] << "] " << flush;
     return frame;
 }
 
