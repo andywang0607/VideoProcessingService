@@ -70,14 +70,15 @@ void VideoService::stop()
     cout << "VideoService vp stop finish" << endl;
     if(ap) ap->stop();
     cout << "VideoService ap stop finish" << endl;
-    if(demuxer) demuxer->close();
-    cout << "VideoService demuxer close finish" << endl;
+
     if(controlThread.empty()) return;
     isRunning.store(false);
     for(auto &thread:controlThread) {
         thread.join();
     }
     controlThread.clear();
+    if(demuxer) demuxer->close();
+    cout << "VideoService demuxer close finish" << endl;
     cout << "VideoService stop finish" << endl;
 }
 
