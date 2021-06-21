@@ -29,6 +29,15 @@ Provide a sample demostrate how to get video data and information directly from 
     - Plugin for Qt
     - Plugin for flutter
 
+## How to run this server
+```
+# pull image from dockerhub
+sudo docker pull andywang0607/video-processing-service 
+
+# Run docker (you can use another port)
+sudo docker run --rm -p 9080:9080 andywang0607/video-processing-service 
+```
+
 ## How to build this server
 1. Prepare third-party library
     - Setup vcpkg
@@ -54,6 +63,6 @@ Provide a sample demostrate how to get video data and information directly from 
     ```
 
 ## Note
-I start this project just for practice build a rest service with c++.  
+This is my weekend project just a practice for building a rest service with c++.  
 Get decode video and audio data from this service is not a efficent methoud indeed,  
-But it is quite **simple** and **easy** to write a video player in every ui framework
+But it is quite **simple** and **easy** for developer to write a video player in every ui framework
